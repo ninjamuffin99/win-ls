@@ -7,11 +7,26 @@ function main()
     dirs = dirs.map(function(dir:String):String
     {   
         if (FileSystem.isDirectory("./" + dir))
-            return ANSI.BRIGHT_CYAN + dir + "/";
+            dir = ANSI.BRIGHT_CYAN + dir + "/";
         else
-            return ANSI.BRIGHT_GREEN + dir;
+            dir = ANSI.BRIGHT_GREEN + dir;
+        
+        while (dir.length < 20)
+            dir += " ";
+        if (dir.length > 20)
+            dir += "\t";
+        return dir;
+        
     });
-    Sys.stdout().writeString(dirs.join("\t\t"));
+
+    for (ind => dir in dirs)
+    {
+        
+        Sys.stdout().writeString(dir + "\t");
+        if (ind % 7 == 6)
+            Sys.stdout().writeString("\n");
+    }
+    Sys.stdout().writeString("\n");
     Sys.stdout().writeString(ANSI.DEFAULT);
 }
 
