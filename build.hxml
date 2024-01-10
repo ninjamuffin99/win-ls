@@ -1,0 +1,3 @@
+--main Main
+--cpp folder
+-D HAXE_OUTPUT_PART=ls
